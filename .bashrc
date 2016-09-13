@@ -108,18 +108,25 @@ fi
 # Make sort, grep, etc. behave as expected.
 export LC_ALL=C
 
-# If no SSH agent is already running, start one now. Re-use sockets so we never
-# have to start more than one session.
-export SSH_AUTH_SOCK=~/.ssh-socket
+# Use existing SSH agent if possible.
+SSH_SCRIPT=~/.ssh-script
+if [ -e $SSH_SCRIPT ]; then
+    source $SSH_SCRIPT > /dev/null
+fi
+# If no SSH agent is already running, start one now.
 ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
     # No ssh-agent running
-    rm -rf $SSH_AUTH_SOCK
     # >| allows output redirection to over-write files if no clobber is set
-    ssh-agent -a $SSH_AUTH_SOCK >| /tmp/.ssh-script
-    source /tmp/.ssh-script
-    echo $SSH_AGENT_PID >| ~/.ssh-agent-pid
-    rm -f /tmp/.ssh-script
+    ssh-agent -s >| $SSH_SCRIPT
+    source $SSH_SCRIPT > /dev/null
 
-    ssh-add ~/.ssh/keys/!(*.pub) # Add SSH keys
+    # Add SSH keys
+    if [ -d ~/.ssh/keys ]; then
+        ssh-add ~/.ssh/keys/!(*.pub) > /dev/null
+    elif [ -d ~/.ssh/private ]; then
+        ssh-add ~/.ssh/private/!(*.pub) > /dev/null
+    else
+        ssh-add ~/.ssh/!(*.pub) > /dev/null
+    fi
 fi
