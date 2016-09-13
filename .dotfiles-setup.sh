@@ -1,7 +1,13 @@
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 git clone --bare git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
-mkdir $HOME/.config-backup && \
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-    xargs -I{} mv {} $HOME/.dotfiles-backup/{}
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout
+if [ $? == 0 ]; then
+    echo "Checked out dotfiles."
+else
+    echo "Backing up pre-existing dotfiles."
+    mkdir $HOME/.dotfiles-backup && \
+        dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+        xargs -I{} mv {} $HOME/.dofiles-backup/{}
+    dotfiles checkout
+fi
 dotfiles config --local status.showUntrackedFiles no
