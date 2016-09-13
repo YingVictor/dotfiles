@@ -35,5 +35,8 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Dirty hacks:
 
-#AUCTeX somehow causing Emacs to crash when attempting to connect to dbus?
-alias emacs='env -u DBUS_SESSION_BUS_ADDRESS emacs-w32'
+#AUCTeX somehow causing Emacs to crash when attempting to connect to dbus in Cygwin?
+if [ "$HOSTNAME" == "LaptopA" ]
+then
+    alias emacs='env -u DBUS_SESSION_BUS_ADDRESS emacs-w32'
+fi
