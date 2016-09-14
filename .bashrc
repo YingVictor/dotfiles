@@ -123,10 +123,10 @@ if [ $? = 2 ]; then
 
     # Add SSH keys
     if [ -d ~/.ssh/keys ]; then
-        ssh-add ~/.ssh/keys/!(*.pub) > /dev/null
+        ssh-add ~/.ssh/keys/!(*.pub) 2> /dev/null
     elif [ -d ~/.ssh/private ]; then
-        ssh-add ~/.ssh/private/!(*.pub) > /dev/null
+        ssh-add ~/.ssh/private/!(*.pub) 2> /dev/null
     else
-        ssh-add ~/.ssh/!(*.pub) > /dev/null
+        ssh-add ~/.ssh/!(*.pub) 2> /dev/null
     fi
 fi
