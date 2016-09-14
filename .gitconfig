@@ -1,0 +1,7 @@
+[user]
+	name = Victor A. Ying
+	email = victory@csail.mit.edu
+[push]
+	default = simple
+[core]
+	editor = vim
