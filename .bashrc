@@ -113,10 +113,13 @@ SSH_SCRIPT=~/.ssh-script
 if [ -e $SSH_SCRIPT ]; then
     source $SSH_SCRIPT > /dev/null
 fi
-# If no SSH agent is already running, start one now.
+# Check if we can use SSH agent.
 ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
-    # No ssh-agent running
+    # No ssh-agent usable
+    # Kill existing ssh-agents
+    pkill -u $USER -f ssh-agent
+
     # >| allows output redirection to over-write files if no clobber is set
     ssh-agent -s >| $SSH_SCRIPT
     source $SSH_SCRIPT > /dev/null
