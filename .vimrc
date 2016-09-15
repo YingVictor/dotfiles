@@ -31,6 +31,7 @@ match ErrorMsg '\s\+$'
 
 " turn on syntax highlighting
 syntax on
+colorscheme elflord
 
 
 " INFORMATION
