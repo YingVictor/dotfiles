@@ -29,6 +29,9 @@ endif
 " highlight trailing whitespace
 match ErrorMsg '\s\+$'
 
+" turn on syntax highlighting
+syntax on
+
 
 " INFORMATION
 
@@ -40,20 +43,20 @@ match ErrorMsg '\s\+$'
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-" show line numbers
-set number
-
 " leave last command visible
 set showcmd
 
-" searching
-"set incsearch
-
-" turn on syntax highlighting
-syntax on
+" show line numbers
+set number
 
 " turn on line and column number in status bar
 set ruler
+
+
+" SEARCHING
+
+set incsearch
+set hlsearch
 
 
 " EDITING
