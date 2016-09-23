@@ -108,28 +108,32 @@ fi
 # Make sort, grep, etc. behave as expected.
 export LC_ALL=C
 
-# Use existing SSH agent if possible.
-SSH_SCRIPT=~/.ssh-script
-if [ -e $SSH_SCRIPT ]; then
-    source $SSH_SCRIPT > /dev/null
-fi
 # Check if we can use SSH agent.
 ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
     # No ssh-agent usable
-    # Kill existing ssh-agents
-    pkill -u $USER -f ssh-agent
-
-    # >| allows output redirection to over-write files if no clobber is set
-    ssh-agent -s >| $SSH_SCRIPT
-    source $SSH_SCRIPT > /dev/null
-
-    # Add SSH keys
-    if [ -d ~/.ssh/keys ]; then
-        ssh-add ~/.ssh/keys/!(*.pub) 2> /dev/null
-    elif [ -d ~/.ssh/private ]; then
-        ssh-add ~/.ssh/private/!(*.pub) 2> /dev/null
-    else
-        ssh-add ~/.ssh/!(*.pub) 2> /dev/null
+    # Use existing SSH agent if possible.
+    SSH_SCRIPT=~/.ssh-script
+    if [ -e $SSH_SCRIPT ]; then
+        source $SSH_SCRIPT > /dev/null
     fi
+    # Check if we can use SSH agent.
+    ssh-add -l >/dev/null 2>&1
+    if [ $? = 2 ]; then
+        # No ssh-agent usable
+        # Kill existing ssh-agents
+        pkill -u $USER -f ssh-agent
+
+        # >| allows output redirection to over-write files if no clobber is set
+        ssh-agent -s >| $SSH_SCRIPT
+        source $SSH_SCRIPT > /dev/null
+
+        # Add SSH keys
+        if [ -d ~/.ssh/keys ]; then
+            ssh-add ~/.ssh/keys/!(*.pub) 2> /dev/null
+        elif [ -d ~/.ssh/private ]; then
+            ssh-add ~/.ssh/private/!(*.pub) 2> /dev/null
+        else
+            ssh-add ~/.ssh/!(*.pub) 2> /dev/null
+        fi
 fi
