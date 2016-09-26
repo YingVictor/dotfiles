@@ -116,4 +116,5 @@ if [ $? = 2 ]; then
         else
             ssh-add ~/.ssh/!(*.pub) 2> /dev/null
         fi
+    fi
 fi
