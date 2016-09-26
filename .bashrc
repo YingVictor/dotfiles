@@ -107,14 +107,13 @@ if [ $? = 2 ]; then
         # >| allows output redirection to over-write files if no clobber is set
         ssh-agent -s >| $SSH_SCRIPT
         source $SSH_SCRIPT > /dev/null
-    fi
-fi
 
-# Add SSH keys
-if [ -d ~/.ssh/keys ]; then
-    ssh-add ~/.ssh/keys/!(*.pub) 2> /dev/null
-elif [ -d ~/.ssh/private ]; then
-    ssh-add ~/.ssh/private/!(*.pub) 2> /dev/null
-else
-    ssh-add ~/.ssh/!(*.pub) 2> /dev/null
+        # Add SSH keys
+        if [ -d ~/.ssh/keys ]; then
+            ssh-add ~/.ssh/keys/!(*.pub) 2> /dev/null
+        elif [ -d ~/.ssh/private ]; then
+            ssh-add ~/.ssh/private/!(*.pub) 2> /dev/null
+        else
+            ssh-add ~/.ssh/!(*.pub) 2> /dev/null
+        fi
 fi
