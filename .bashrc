@@ -113,7 +113,8 @@ ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
     # No ssh-agent usable
     # Use existing SSH agent if possible.
-    SSH_SCRIPT=~/.ssh-script
+    SSH_SCRIPT_DIR="~/.ssh/"
+    SSH_SCRIPT=$SSH_SCRIPT_DIR"env.sh"
     if [ -e $SSH_SCRIPT ]; then
         source $SSH_SCRIPT > /dev/null
     fi
@@ -124,6 +125,8 @@ if [ $? = 2 ]; then
         # Kill existing ssh-agents
         pkill -u $USER -f ssh-agent
 
+        # Start new SSH agent and record the information to use it in a file
+        mkdir -p $SSH_SCRIPT_DIR
         # >| allows output redirection to over-write files if no clobber is set
         ssh-agent -s >| $SSH_SCRIPT
         source $SSH_SCRIPT > /dev/null
