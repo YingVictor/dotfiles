@@ -7,3 +7,14 @@
 
 # But do ignore the dotfiles bare repo to avoid recursion issues.
 .dotfiles/
+
+# Also ignore various temporary or frequently changing files
+.bash_history
+.viminfo
+.lesshst
+.wget-hsts
+.xsession-errors
+.Xauthority
+.ICEauthority
+.gksu.lock
+.dmrc

@@ -15,4 +15,3 @@ else
         xargs -I{} mv {} $HOME/.dotfiles-backup/{}
     dotfiles checkout
 fi
-dotfiles config --local status.showUntrackedFiles no
