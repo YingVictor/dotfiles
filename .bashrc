@@ -26,6 +26,13 @@ shopt -s cdspell
 # Enable regular expression globs
 shopt -s extglob
 
+# The pattern "**" in a pathname expansion will match all files
+# and zero or more directories and subdirectories.
+shopt -s globstar
+
+# Check the window size after each command
+shopt -s checkwinsize
+
 #Fail when overwritting file unless explicitly forced
 set -o noclobber
 
@@ -47,18 +54,21 @@ set -o noclobber
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 # History Options
-#
-# Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
+
+# Don't put duplicate lines or lines starting with whitespace in the history.
+export HISTCONTROL=ignoreboth
+
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout'
 # export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout:ls' # Ignore the ls command as well
-#
+
 # Whenever displaying the prompt, write the previous line to disk
 export PROMPT_COMMAND="history -a"
+
+# Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Aliases
 #
