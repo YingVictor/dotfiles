@@ -10,8 +10,9 @@ if [ $? == 0 ]; then
     echo "Checked out dotfiles."
 else
     echo "Backing up pre-existing dotfiles."
-    mkdir -p $HOME/.dotfiles-backup && \
+    BACKUP_DIR=$HOME/.backup
+    mkdir -p $BACKUP_DIR && \
         dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-        xargs -I{} mv {} $HOME/.dotfiles-backup/{}
+        xargs -I{} mv {} $BACKUP_DIR/{}
     dotfiles checkout
 fi
