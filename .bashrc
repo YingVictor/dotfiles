@@ -60,20 +60,20 @@ set -o noclobber
 shopt -s histappend
 
 # Don't put duplicate lines or lines starting with whitespace in the history.
-export HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth
 
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout'
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout:ls' # Ignore the ls command as well
+HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout'
+# HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout:ls' # Ignore the ls command as well
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=10000
-export HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a"
+PROMPT_COMMAND="history -a"
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
