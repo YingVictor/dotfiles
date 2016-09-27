@@ -1,7 +1,9 @@
 # ~/.bashrc: executed by bash(1) for interactive shells.
 
+
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
+
 
 # Shell Options
 #
@@ -15,9 +17,6 @@
 #
 # Use case-insensitive filename globbing
 # shopt -s nocaseglob
-#
-# Make bash append rather than overwrite the history on disk
-shopt -s histappend
 #
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
@@ -36,6 +35,7 @@ shopt -s checkwinsize
 #Fail when overwritting file unless explicitly forced
 set -o noclobber
 
+
 # Completion options
 #
 # These completion tuning parameters change the default behavior of bash_completion:
@@ -53,7 +53,11 @@ set -o noclobber
 # Any completions you add in ~/.bash_completion are sourced last.
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
+
 # History Options
+
+# Make bash append rather than overwrite the history on disk
+shopt -s histappend
 
 # Don't put duplicate lines or lines starting with whitespace in the history.
 export HISTCONTROL=ignoreboth
@@ -64,11 +68,29 @@ export HISTCONTROL=ignoreboth
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout'
 # export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:logout:ls' # Ignore the ls command as well
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTSIZE=10000
+export HISTFILESIZE=2000
+
 # Whenever displaying the prompt, write the previous line to disk
 export PROMPT_COMMAND="history -a"
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
+# Umask
+#
+# /etc/profile sets 022, removing write perms to group + others.
+# Set a more restrictive umask: i.e. no exec perms for others:
+# umask 027
+# Paranoid: neither group nor others have any perms:
+# umask 077
+
+
+# Make sort, grep, etc. behave as expected.
+export LC_ALL=C
+
 
 # Aliases
 #
@@ -77,23 +99,12 @@ if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
 fi
 
-# Umask
-#
-# /etc/profile sets 022, removing write perms to group + others.
-# Set a more restrictive umask: i.e. no exec perms for others:
-# umask 027
-# Paranoid: neither group nor others have any perms:
-umask 077
-
 # Functions
 #
 # Some people use a different file for functions
 if [ -f "${HOME}/.bash_functions" ]; then
   source "${HOME}/.bash_functions"
 fi
-
-# Make sort, grep, etc. behave as expected.
-export LC_ALL=C
 
 # Check if we can use SSH agent.
 ssh-add -l >/dev/null 2>&1
