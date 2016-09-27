@@ -1,20 +1,35 @@
 # Ignore all normal files
-*
+/*
 
 # Except for thing starting with dots
-!.*
-!.*/
+!/.*
 
 # But do ignore the dotfiles bare repo to avoid recursion issues.
-.dotfiles/
+/.dotfiles/
 
 # Also ignore various temporary or frequently changing files
-.bash_history
-.viminfo
-.lesshst
-.wget-hsts
-.xsession-errors
-.Xauthority
-.ICEauthority
-.gksu.lock
-.dmrc
+/.bash_history
+/.viminfo
+/.lesshst
+/.wget-hsts
+/.xsession-errors
+/.Xauthority
+/.ICEauthority
+/.gksu.lock
+/.dmrc
+/.xinputrc
+/.cache/
+/.config/
+/.local/share/
+/.cinnamon/
+/.dbus/
+/.dropbox/
+/.dropbox-dist/
+/.gnome/
+/.macromedia/
+/.mozilla/
+/.pki/nssdb/
+/.ssh/id_*
+/.ssh/private/
+/.ssh/keys/
+/.ssh/known_hosts
