@@ -5,22 +5,27 @@
 [[ "$-" != *i* ]] && return
 
 
-# Shell Options
-#
+# Miscellaneous shell options
 # See man bash for more options...
-#
+
 # Don't wait for job termination notification
-# set -o notify
-#
+set -o notify
+
 # Don't use ^D to exit
 # set -o ignoreeof
-#
-# Use case-insensitive filename globbing
-# shopt -s nocaseglob
-#
+
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
+
+# Check the window size after each command
+shopt -s checkwinsize
+
+#Fail when overwritting file unless explicitly forced
+set -o noclobber
+
+
+# Glob options
 
 # Enable regular expression globs
 shopt -s extglob
@@ -29,11 +34,17 @@ shopt -s extglob
 # and zero or more directories and subdirectories.
 shopt -s globstar
 
-# Check the window size after each command
-shopt -s checkwinsize
+# If a pattern fails to match, report an error
+#shopt -s failglob
 
-#Fail when overwritting file unless explicitly forced
-set -o noclobber
+# Include hidden files
+shopt -s dotglob
+
+# Exclude . and .. from matches
+GLOBIGNORE=${GLOBIGNORE:+$GLOBIGNORE:}.:..
+
+# Use case-insensitive filename globbing
+# shopt -s nocaseglob
 
 
 # Completion options
