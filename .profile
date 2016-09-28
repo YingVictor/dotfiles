@@ -31,8 +31,14 @@ if [ -d "${HOME}/info" ]; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
-
 # Set LD_LIBRARY_PATH so it includes users' private lib if it exists
 if [ -d "${HOME}/lib" ]; then
   LD_LIBRARY_PATH="${HOME}/lib:${LD_LIBRARY_PATH}"
+fi
+
+
+if command -v vim >/dev/null 2>&1; then
+  export EDITOR="$(command -v vim)"
+elif command -v vi >/dev/null 2>&1; then
+  export EDITOR="$(command -v vi)"
 fi
