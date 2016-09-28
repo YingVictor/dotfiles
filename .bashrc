@@ -189,7 +189,7 @@ ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
     # No ssh-agent usable
     # Use existing SSH agent if possible.
-    SSH_SCRIPT_DIR="~/.ssh/"
+    SSH_SCRIPT_DIR="$HOME/.ssh/"
     SSH_SCRIPT=$SSH_SCRIPT_DIR"env.sh"
     if [ -e $SSH_SCRIPT ]; then
         source $SSH_SCRIPT > /dev/null
