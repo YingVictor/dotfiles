@@ -1,9 +1,9 @@
-git clone --bare git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
+git clone --no-checkout git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
 if [ $? != 0 ]; then
     return 1
 fi
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 dotfiles checkout
 if [ $? == 0 ]; then
