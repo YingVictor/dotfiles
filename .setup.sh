@@ -12,6 +12,7 @@ function mvp ()
   [ "$last_char" != "/" ] && dir="$(dirname "$2")"
   [ -d "$dir" ] || mkdir -p "$dir" && mv "$@"
 }
+export -f mvp
 
 dotfiles checkout
 if [ $? == 0 ]; then
@@ -21,6 +22,8 @@ else
     BACKUP_DIR=$HOME/.backup
     mkdir -p $BACKUP_DIR && \
         dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-        xargs -I{} mvp {} $BACKUP_DIR/{}
+        xargs -I{} bash -c "mvp {} $BACKUP_DIR/{}"
     dotfiles checkout
 fi
+
+unset mvp
