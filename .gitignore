@@ -26,10 +26,13 @@
 /.dropbox/
 /.dropbox-dist/
 /.gnome/
+/.kde/
 /.macromedia/
 /.mozilla/
 /.pki/nssdb/
+/.snapshot*
 /.ssh/id_*
-/.ssh/private/
-/.ssh/keys/
 /.ssh/known_hosts
+/.ssh/README
+/.ssh/keys/
+/.ssh/private/
