@@ -1,9 +1,10 @@
-git clone --no-checkout git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
-if [ $? != 0 ]; then
-    return 1
-fi
+#! /usr/bin/env bash
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
+set -e
+
+git clone --no-checkout git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
+
+DOTFILES='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 function mvp ()
 {
@@ -14,16 +15,19 @@ function mvp ()
 }
 export -f mvp
 
-dotfiles checkout
-if [ $? == 0 ]; then
-    echo "Checked out dotfiles."
-else
+set +e
+
+$DOTFILES checkout -q
+if [ $? != 0 ]; then
     echo "Backing up pre-existing dotfiles."
     BACKUP_DIR=$HOME/.backup
     mkdir -p $BACKUP_DIR && \
-        dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+        $DOTFILES checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
         xargs -I{} bash -c "mvp {} $BACKUP_DIR/{}"
-    dotfiles checkout
+    set -e
+    $DOTFILES checkout -q
 fi
 
 unset mvp
+
+echo "Checked out dotfiles."
