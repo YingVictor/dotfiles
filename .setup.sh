@@ -2,9 +2,17 @@
 
 set -e
 
-git clone --no-checkout git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
+if [ ! -d $HOME/.dotfiles ] ; then
+  git clone --no-checkout git@github.com:YingVictor/dotfiles.git $HOME/.dotfiles
+fi
 
-DOTFILES='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
+DOTFILES="git --git-dir="$HOME"/.dotfiles/.git --work-tree="$HOME
+
+$DOTFILES status >/dev/null 2>&1
+if [ $? != 0 ]; then
+  echo "Dotfiles repo not set up properly."
+  return
+fi
 
 function mvp ()
 {
