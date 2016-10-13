@@ -28,8 +28,10 @@
 /.dropbox/
 /.dropbox-dist/
 /.gnome/
+/.java/
 /.kde/
 /.macromedia/
+/.matlab/
 /.mozilla/
 /.pki/nssdb/
 /.snapshot*
@@ -39,3 +41,4 @@
 /.ssh/README
 /.ssh/keys/
 /.ssh/private/
+/.vim/.netrwhist
