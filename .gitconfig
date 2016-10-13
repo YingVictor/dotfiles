@@ -2,6 +2,8 @@
 	name = Victor A. Ying
 	email = victory@csail.mit.edu
 [push]
-	default = simple
+	default = upstream
 [core]
 	editor = vim
+[pull]
+	rebase = preserve
