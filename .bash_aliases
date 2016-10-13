@@ -36,6 +36,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # dotfiles
 alias dotfiles='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
+# Start tmux with krenew-tmux-wrapper
+alias ktmux='krenew -biLt -- krenew-tmux-wrapper && sleep 0.1 && tmux attach'
+
 # Dirty hacks:
 
 #AUCTeX somehow causing Emacs to crash when attempting to connect to dbus in Cygwin?
