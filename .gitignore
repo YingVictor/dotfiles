@@ -1,11 +1,13 @@
-# Ignore all normal files
+# Ignore all files
 /*
 
-# Except for thing starting with dots
+# Except for thing starting with dots in the home directory.
 !/.*
 
-# But do ignore the dotfiles bare repo to avoid recursion issues.
+# But do ignore the dotfiles repo to avoid recursion issues
 /.dotfiles/
+# And also ignore any git directory.
+*.git/
 
 # Also ignore various temporary or frequently changing files
 /.bash_history
