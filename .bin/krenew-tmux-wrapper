@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# See http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/752
+
 if [ $(tmux ls 2>/dev/null | wc -l) -gt 0 ]; then
     exit 1
 fi
