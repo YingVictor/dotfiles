@@ -64,3 +64,8 @@ set hlsearch
 
 " make backspace work
 set backspace=indent,eol,start
+
+
+" CUSTOM KEYBINDINGS
+
+inoremap jj <Esc>
