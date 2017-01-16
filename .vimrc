@@ -69,3 +69,5 @@ set backspace=indent,eol,start
 " CUSTOM KEYBINDINGS
 
 inoremap jj <Esc>
+
+set timeoutlen=200
