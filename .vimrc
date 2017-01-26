@@ -33,6 +33,9 @@ match ErrorMsg '\s\+$'
 syntax on
 colorscheme elflord
 
+" Custom syntax support
+au BufNewFile,BufRead SCons* set filetype=scons
+
 
 " INFORMATION
 
