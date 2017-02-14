@@ -174,15 +174,15 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Aliases
 #
 # Some people use a different file for aliases
-if [ -f "${HOME}/.bash_aliases" ]; then
-  source "${HOME}/.bash_aliases"
+if [ -f "${HOME}/.bash/aliases" ]; then
+  source "${HOME}/.bash/aliases"
 fi
 
 # Functions
 #
 # Some people use a different file for functions
-if [ -f "${HOME}/.bash_functions" ]; then
-  source "${HOME}/.bash_functions"
+if [ -f "${HOME}/.bash/functions" ]; then
+  source "${HOME}/.bash/functions"
 fi
 
 # Check if we can use SSH agent.
