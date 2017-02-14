@@ -75,6 +75,13 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
+# Custom completion
+if [ -d ${HOME}/.bash/completion ]; then
+  for file in  ${HOME}/.bash/completion/*; do
+    source $file
+  done
+fi
+
 
 # History Options
 
