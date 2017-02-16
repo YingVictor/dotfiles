@@ -1,4 +1,4 @@
-personal_ws-1.1 en 87 
+personal_ws-1.1 en 90 
 atomicity
 NUCA
 refactoring
@@ -40,12 +40,13 @@ ADTree
 Kruskal's
 unvisited
 kmeans
-livelock
 MESI
+livelock
 unordered
 fanouts
 composable
 timestamp
+LogTM
 virtualization
 enqueuing
 enqueued
@@ -75,8 +76,10 @@ STM
 enqueues
 Kbit
 pre
+superscalar
 timeline
 GVT
+inlining
 parallelize
 superlinear
 misspeculating
