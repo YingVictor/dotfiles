@@ -266,3 +266,5 @@ else
     rm -f "$TMP_X_SCRIPT"
   fi
 fi
+
+aklog -cell athena.mit.edu
