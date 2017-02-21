@@ -45,3 +45,16 @@
 /.ssh/private/
 /.subversion/
 /.vim/.netrwhist
+
+# Athena-specific files
+/.generation
+/.lastdialup
+/.cshrc
+/.login
+/.logout
+/.bash_login
+/.sw_messages
+/.mh_profile
+/.thumbnails/
+/.matplotlib/
+/.Mathematica*
