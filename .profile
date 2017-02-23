@@ -42,3 +42,11 @@ if command -v vim >/dev/null 2>&1; then
 elif command -v vi >/dev/null 2>&1; then
   export EDITOR="$(command -v vi)"
 fi
+
+
+# Make sort, grep, etc. behave as expected.
+export LC_ALL=C
+
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
