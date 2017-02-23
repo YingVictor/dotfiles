@@ -47,3 +47,4 @@
 /.ssh/private/
 /.subversion/
 /.vim/.netrwhist
+/.x_env.sh

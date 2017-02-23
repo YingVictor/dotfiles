@@ -225,3 +225,26 @@ if [ $? = 2 ]; then
         fi
     fi
 fi
+
+# Check if we can use X server.
+X_SCRIPT="${HOME}/.x_env.sh"
+xhost >/dev/null 2>&1
+if [ $? != 0 ]; then
+  # No X server reachable
+  if [ -e $X_SCRIPT ]; then
+    source $X_SCRIPT
+    # Check if we can use X server.
+    xhost >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      # No X server reachable
+      echo "Deleting defunct ${X_SCRIPT}."
+      rm $X_SCRIPT
+    fi
+  fi
+else
+  if [ -e $X_SCRIPT ]; then
+    echo "DISPLAY works, but there is an existing ${X_SCRIPT}."
+  else
+    echo "export DISPLAY=${DISPLAY}" > $X_SCRIPT
+  fi
+fi
