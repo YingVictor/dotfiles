@@ -21,6 +21,7 @@
 /.dmrc
 /.xinputrc
 /.cache/
+/.cmake/
 /.config/
 /.local/share/
 /.cinnamon/
@@ -36,6 +37,7 @@
 /.pki/nssdb/
 /.pylint.d/
 /.python_history
+/.slocdata/
 /.snapshot*
 /.ssh/env.sh
 /.ssh/id_*
