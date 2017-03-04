@@ -170,14 +170,6 @@ umask 022
 # umask 077
 
 
-# Make sort, grep, etc. behave as expected.
-export LC_ALL=C
-
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-
 # Aliases
 #
 # Some people use a different file for aliases
@@ -224,4 +216,27 @@ if [ $? = 2 ]; then
             ssh-add ~/.ssh/id!(*.pub) 2> /dev/null
         fi
     fi
+fi
+
+# Check if we can use X server.
+X_SCRIPT="${HOME}/.x_env.sh"
+xhost >/dev/null 2>&1
+if [ $? != 0 ]; then
+  # No X server reachable
+  if [ -e $X_SCRIPT ]; then
+    source $X_SCRIPT
+    # Check if we can use X server.
+    xhost >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      # No X server reachable
+      echo "Deleting defunct ${X_SCRIPT}."
+      rm $X_SCRIPT
+    fi
+  fi
+else
+  if [ -e $X_SCRIPT ]; then
+    echo "DISPLAY works, but there is an existing ${X_SCRIPT}."
+  else
+    echo "export DISPLAY=${DISPLAY}" > $X_SCRIPT
+  fi
 fi
