@@ -21,6 +21,7 @@
 /.dmrc
 /.xinputrc
 /.cache/
+/.cmake/
 /.config/
 /.local/share/
 /.cinnamon/
@@ -36,6 +37,7 @@
 /.pki/nssdb/
 /.pylint.d/
 /.python_history
+/.slocdata/
 /.snapshot*
 /.ssh/env.sh
 /.ssh/id_*
@@ -45,6 +47,7 @@
 /.ssh/private/
 /.subversion/
 /.vim/.netrwhist
+/.x_env.sh
 
 # Athena-specific files
 /.generation
