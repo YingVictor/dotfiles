@@ -190,7 +190,7 @@ if [ $? = 2 ]; then
     # No ssh-agent usable
     # Use existing SSH agent if possible.
     SSH_SCRIPT_DIR="$HOME/.ssh/"
-    SSH_SCRIPT=$SSH_SCRIPT_DIR"env.sh"
+    SSH_SCRIPT="${SSH_SCRIPT_DIR}${HOSTNAME}_env.sh"
     if [ -e $SSH_SCRIPT ]; then
         source $SSH_SCRIPT > /dev/null
     fi
@@ -219,7 +219,7 @@ if [ $? = 2 ]; then
 fi
 
 # Check if we can use X server.
-X_SCRIPT="${HOME}/.x_env.sh"
+X_SCRIPT="${HOME}/.${HOSTNAME}_x_env.sh"
 xhost >/dev/null 2>&1
 if [ $? != 0 ]; then
   # No X server reachable
