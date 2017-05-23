@@ -9,7 +9,7 @@
 # And also ignore any git directory.
 *.git/
 
-# Also ignore various temporary or frequently changing files
+# Also ignore various temporary, frequently changing, or machine-specific files
 /.bash_history
 /.viminfo
 /.lesshst
@@ -34,10 +34,13 @@
 /.macromedia/
 /.matlab/
 /.mozilla/
+/.oracle_jre_usage/
+/.pip/
 /.pki/nssdb/
 /.pylint.d/
 /.python_history
 /.slocdata/
+/.smartgit/
 /.snapshot*
 /.ssh/env.sh
 /.ssh/id_*
@@ -46,6 +49,7 @@
 /.ssh/keys/
 /.ssh/private/
 /.subversion/
+/.swt/
 /.vim/.netrwhist
 /.*_x_env.sh
 /.ssh/*_env.sh
