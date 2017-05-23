@@ -1,7 +1,10 @@
-personal_ws-1.1 en 122 
+personal_ws-1.1 en 138 
+CFG
 GVT
 runtime
 dereference
+templating
+API
 yada
 OpenMP
 HTM
@@ -33,6 +36,7 @@ underperform
 Subramanian
 enqueue
 tuple
+CPUs
 enum
 parallelized
 manycore
@@ -41,6 +45,7 @@ mem
 Kbit
 ld
 composable
+bitcode
 dequeued
 superscalar
 parallelizes
@@ -50,10 +55,12 @@ SRC
 quiesced
 unshifted
 timestamp
+LLVM's
 virtualizing
 livelock
 TLS
 dequeues
+metadata
 mis
 TMs
 STM
@@ -61,14 +68,20 @@ ADTree
 NUCA
 misspeculating
 shifter
+subgraph
 timeline
+dominator
 timestamps
+subexpression
 LogTM
 multicore
 composability
 LLVM
 dequeue
 subdomains
+dequeueing
+Nehalem
+CFGs
 subdomain
 microbenchmarks
 microbenchmark
@@ -76,6 +89,7 @@ MSB
 splitter
 Hyun
 inlining
+ABI
 parallelizing
 virtualization
 codebase
@@ -102,7 +116,9 @@ enqueuer
 enqueues
 scalability
 microarchitecture
+GPUs
 superdomain
+inlined
 VTs
 STARnet
 kmeans
