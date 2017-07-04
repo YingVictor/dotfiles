@@ -62,6 +62,8 @@ set ruler
 set incsearch
 set hlsearch
 
+set tags=./tags;
+
 
 " EDITING
 
