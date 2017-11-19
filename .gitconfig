@@ -7,3 +7,5 @@
 	editor = vim
 [pull]
 	rebase = preserve
+[diff "pdf"]
+	textconv = pdfinfo
