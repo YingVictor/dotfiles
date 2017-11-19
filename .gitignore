@@ -10,6 +10,7 @@
 *.git/
 
 # Also ignore various temporary, frequently changing, or machine-specific files
+/.aspell.en.*
 /.bash_history
 /.viminfo
 /.lesshst
