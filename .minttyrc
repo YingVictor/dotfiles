@@ -1,0 +1,8 @@
+BoldAsFont=yes
+CtrlShiftShortcuts=yes
+RightClickAction=paste
+Columns=100
+Rows=50
+Font=Consolas
+FontHeight=11
+BoldAsColour=yes
