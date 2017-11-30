@@ -19,6 +19,7 @@
 /.Xauthority
 /.ICEauthority
 /.gksu.lock
+/.gnupg/
 /.dmrc
 /.xinputrc
 /.cache/
