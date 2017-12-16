@@ -88,7 +88,7 @@ fi
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 
-# Don't put duplicate lines or lines starting with whitespace in the history.
+# don't put duplicate lines or lines starting with whitespace in the history.
 HISTCONTROL=ignoreboth
 
 # Ignore some controlling instructions
@@ -104,7 +104,7 @@ HISTFILESIZE=20000
 # Whenever displaying the prompt, write the previous line to disk
 PROMPT_COMMAND="history -a"
 
-# Make less more friendly for non-text input files, see lesspipe(1)
+# make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 
