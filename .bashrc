@@ -220,13 +220,13 @@ fi
 
 # Check if we can use X server.
 X_SCRIPT="${HOME}/.${HOSTNAME}_x_env.sh"
-xhost >/dev/null 2>&1
+xset q >/dev/null 2>&1
 if [ $? != 0 ]; then
   # No X server reachable
   if [ -e $X_SCRIPT ]; then
     source $X_SCRIPT
     # Check if we can use X server.
-    xhost >/dev/null 2>&1
+    xset q >/dev/null 2>&1
     if [ $? != 0 ]; then
       # No X server reachable
       echo "Deleting defunct ${X_SCRIPT}."
