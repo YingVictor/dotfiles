@@ -235,8 +235,8 @@ if [ $? != 0 ]; then
   fi
 else
   if [ -e $X_SCRIPT ]; then
-    echo "DISPLAY works, but there is an existing ${X_SCRIPT}."
-  else
-    echo "export DISPLAY=${DISPLAY}" > $X_SCRIPT
+    echo "Replacing existing ${X_SCRIPT}."
+    mv $X_SCRIPT ${X_SCRIPT}.bak
   fi
+  echo "export DISPLAY=${DISPLAY}" >| $X_SCRIPT
 fi
