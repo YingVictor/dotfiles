@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+dot $1 -Tpdf >| /tmp/victory_gv.pdf
+xpdf /tmp/victory_gv.pdf
