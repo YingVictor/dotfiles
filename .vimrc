@@ -76,3 +76,8 @@ set backspace=indent,eol,start
 inoremap jj <Esc>
 
 set timeoutlen=200
+
+
+" PER-DIRECTORY .vimrc
+set exrc
+set secure
