@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-dot $1 -Tpdf >| /tmp/victory_gv.pdf
-xpdf /tmp/victory_gv.pdf
+FILENAME=/tmp/victory_dot_${RANDOM}.pdf
+dot $1 -Tpdf >| ${FILENAME}
+xpdf ${FILENAME}
+rm -f ${FILENAME}
