@@ -36,6 +36,7 @@
 /.dbus/
 /.dropbox/
 /.dropbox-dist/
+/.gconf/
 /.gnome/
 /.java/
 /.kde/
