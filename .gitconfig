@@ -9,3 +9,5 @@
 	rebase = preserve
 [diff "pdf"]
 	textconv = pdfinfo
+[alias]
+	showtrackedignored = ls-files -i --exclude-standard
