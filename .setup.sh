@@ -32,9 +32,16 @@ if [ $? != 0 ]; then
     mkdir -p $BACKUP_DIR && \
         $DOTFILES checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
         xargs -I{} bash -c "mvp {} $BACKUP_DIR/{}"
-    rm $HOME/.backup/.setup.sh
     set -e
     $DOTFILES checkout -q
+    shopt -s dotglob
+    for FILENAME in $HOME/.backup/*; do
+        FILENAME=$(basename ${FILENAME})
+        if diff -q $HOME/$FILENAME $HOME/.backup/$FILENAME; then
+            echo "Preexisting ${FILENAME} matches, deleting backup."
+            rm -rf $HOME/.backup/$FILENAME
+        fi
+    done
 fi
 
 unset mvp
