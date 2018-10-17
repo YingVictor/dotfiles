@@ -16,6 +16,7 @@
 .sw?
 
 # Also ignore various temporary, frequently changing, or machine-specific files
+/.aptitude/
 /.aspell.en.*
 /.bash_history
 /.viminfo
