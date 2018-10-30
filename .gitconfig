@@ -7,6 +7,11 @@
 	editor = vim
 [pull]
 	rebase = preserve
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red bold
+	newNormal = green
+	newHighlight = green bold
 [diff "pdf"]
 	textconv = pdfinfo
 [alias]
