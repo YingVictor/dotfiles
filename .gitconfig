@@ -16,3 +16,6 @@
 	textconv = pdfinfo
 [alias]
 	showtrackedignored = ls-files -i --exclude-standard
+[status]
+	short = true
+	branch = true
