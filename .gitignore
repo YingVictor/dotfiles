@@ -35,6 +35,7 @@
 /.local/share/
 /.cinnamon/
 /.dbus/
+/.debug/
 /.dropbox/
 /.dropbox-dist/
 /.gconf/
