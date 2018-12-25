@@ -73,6 +73,8 @@ set tags=./tags;
 " make backspace work
 set backspace=indent,eol,start
 
+" https://stackoverflow.com/a/18730056
+xnoremap <expr> P '"_d"'.v:register.'P'
 
 " CUSTOM KEYBINDINGS
 
