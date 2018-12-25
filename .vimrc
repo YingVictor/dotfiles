@@ -56,6 +56,9 @@ set number
 " turn on line and column number in status bar
 set ruler
 
+" Show as much as possible of line that wraps past end of window
+set display+=lastline
+
 
 " SEARCHING
 
