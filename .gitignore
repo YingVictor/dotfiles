@@ -54,6 +54,7 @@
 /.slocdata/
 /.smartgit/
 /.snapshot*
+/.ssh/authorized_keys
 /.ssh/id_*
 /.ssh/known_hosts
 /.ssh/README
@@ -61,6 +62,7 @@
 /.ssh/private/
 /.subversion/
 /.swt/
+/.vbox_version
 /.vboxclient-*.pid
 /.vim/.netrwhist
 /.xorgxrdp.*.log
