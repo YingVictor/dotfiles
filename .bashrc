@@ -223,20 +223,19 @@ X_SCRIPT="${HOME}/.${HOSTNAME}_x_env.sh"
 xset q >/dev/null 2>&1
 if [ $? != 0 ]; then
   # No X server reachable
-  if [ -e $X_SCRIPT ]; then
-    source $X_SCRIPT
-    # Check if we can use X server.
-    xset q >/dev/null 2>&1
-    if [ $? != 0 ]; then
-      # No X server reachable
-      echo "Deleting defunct ${X_SCRIPT}."
-      rm $X_SCRIPT
-    fi
+  if [ -e "$X_SCRIPT" ]; then
+    source "$X_SCRIPT"
   fi
 else
-  if [ -e $X_SCRIPT ]; then
-    echo "Replacing existing ${X_SCRIPT}."
-    mv $X_SCRIPT ${X_SCRIPT}.bak
+  # We can reach an X server
+  TMP_X_SCRIPT="/tmp/${USER}_x.sh"
+  echo "export DISPLAY=${DISPLAY}" >| "$TMP_X_SCRIPT"
+  if ! cmp -s "$X_SCRIPT" "$TMP_X_SCRIPT"; then
+    echo "Saving new ${X_SCRIPT}."
+    mv -f "$X_SCRIPT" "${X_SCRIPT}.bak"
+    mv "$TMP_X_SCRIPT" "$X_SCRIPT"
+  else
+    echo "${X_SCRIPT} already up to date."
+    rm -f "$TMP_X_SCRIPT"
   fi
-  echo "export DISPLAY=${DISPLAY}" >| $X_SCRIPT
 fi
