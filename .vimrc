@@ -7,6 +7,10 @@ if has("autocmd")
 
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
+    " clang-format
+    autocmd FileType c,cpp map <C-I> :pyf ~/.vim/clang-format.py<CR>
+    autocmd FileType c,cpp imap <C-I> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 endif
 
 " For everything else, use a tab width of 2 space chars.
