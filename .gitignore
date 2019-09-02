@@ -44,6 +44,7 @@
 /.oracle_jre_usage/
 /.pip/
 /.pki/nssdb/
+/.pyenv/
 /.pylint.d/
 /.python_history
 /.slocdata/
@@ -61,6 +62,8 @@
 /.vboxclient-*.pid
 /.vim/.netrwhist
 /.viminfo
+/.vscode-cpptools/
+/.vscode-server/
 /.wget-hsts
 /.Xauthority
 /.xinputrc
