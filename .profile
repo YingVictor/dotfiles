@@ -9,6 +9,9 @@
 umask 022
 
 # Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/.local/bin" ] ; then
+  PATH="${HOME}/.local/bin:${PATH}"
+fi
 if [ -d "${HOME}/.bin" ] ; then
   PATH="${HOME}/.bin:${PATH}"
 fi
@@ -16,6 +19,13 @@ if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
 fi
 
+# Set MANPATH so it includes users' private man if it exists
+if [ -d "${home}/.local/man" ]; then
+  manpath="${home}/.local/man:${manpath}"
+fi
+if [ -d "${home}/.man" ]; then
+  manpath="${home}/.man:${manpath}"
+fi
 
 if command -v vim >/dev/null 2>&1; then
   export EDITOR="$(command -v vim)"
