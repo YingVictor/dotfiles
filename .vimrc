@@ -1,4 +1,33 @@
+set nocompatible
+
+" PER-DIRECTORY .vimrc
+set exrc
+set secure
+
+" But no per-file modelines.
+set modelines=0
+
+
+" AVOID DATA LOSS
+
+" Keep undo information in *.un~ files
+set undofile
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "1000:  will save up to 1000 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"1000,:20,%,n~/.viminfo
+
+" TEXT
+set encoding=utf-8
+
+
 " SPACING
+
+set autoindent
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -41,21 +70,23 @@ colorscheme elflord
 au BufNewFile,BufRead SCons* set filetype=scons
 
 
-" INFORMATION
+" DISPLAY & INFORMATION
 
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
+" Disable beeping, instead flash screen if possible
+set visualbell
+
+" Always show status bar
+set laststatus=2
 
 " leave last command visible
 set showcmd
 
+" Keep context lines visible around cursor
+set scrolloff=3
+
 " show line numbers
 set number
+set relativenumber
 
 " turn on line and column number in status bar
 set ruler
@@ -63,11 +94,34 @@ set ruler
 " Show as much as possible of line that wraps past end of window
 set display+=lastline
 
+" Show potentially unwanted whitespace and line wraps
+set list listchars=tab:▸\ ,trail:·,nbsp:·,precedes:←,extends:→
+
+
+" NAVIGATION
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+
 
 " SEARCHING
 
 set incsearch
 set hlsearch
+nnoremap <C-n> :noh<cr>
+
+set ignorecase
+set smartcase
+
+set gdefault
 
 set tags=./tags;
 
@@ -77,6 +131,10 @@ set tags=./tags;
 " make backspace work
 set backspace=indent,eol,start
 
+" Sensible autocomplete
+set wildmenu
+set wildmode=list:longest
+
 " https://stackoverflow.com/a/18730056
 xnoremap <expr> P '"_d"'.v:register.'P'
 
@@ -85,8 +143,3 @@ xnoremap <expr> P '"_d"'.v:register.'P'
 inoremap jj <Esc>
 
 set timeoutlen=200
-
-
-" PER-DIRECTORY .vimrc
-set exrc
-set secure
