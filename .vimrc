@@ -44,6 +44,9 @@ if has("autocmd")
     " clang-format
     autocmd FileType c,cpp map <C-I> :pyf ~/.vim/clang-format.py<CR>
     autocmd FileType c,cpp imap <C-I> <ESC>:pyf ~/.vim/clang-format.py<CR>i
+
+    " https://stackoverflow.com/q/28078407
+    autocmd Filetype c,cpp set comments^=:///
 endif
 
 " For everything else, use a tab width of 2 space chars.
