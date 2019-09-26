@@ -21,11 +21,15 @@ set undofile
 "  n... :  where to save the viminfo files
 set viminfo='10,\"1000,:20,%,n~/.viminfo
 
+" If file is changed outside of vim and not changed inside of vim,
+" automatically update vim buffer contents to match new file contents.
+set autoread
+
 " TEXT
 set encoding=utf-8
 
 
-" SPACING
+" FORMATTING
 
 set autoindent
 
@@ -47,6 +51,10 @@ set tabstop=8       " Display TAB as having width 8.
 set shiftwidth=2    " Indent width.
 set softtabstop=2   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
+set smarttab
+
+" Including 'j' means automatically remove comment leaders when joining lines
+set formatoptions=tcqj
 
 
 " HIGHLIGHTING
@@ -72,7 +80,10 @@ au BufNewFile,BufRead SCons* set filetype=scons
 
 " DISPLAY & INFORMATION
 
+set ttyfast
+
 " Disable beeping, instead flash screen if possible
+" N.B. Nvim has 'belloff' which is enabled by default.
 set visualbell
 
 " Always show status bar
@@ -93,6 +104,10 @@ set ruler
 
 " Show as much as possible of line that wraps past end of window
 set display+=lastline
+" Nvim also has msgsep, included by default
+
+" Smooth sideways scrolling (when nowrap is set)
+set sidescroll=1
 
 " Show potentially unwanted whitespace and line wraps
 set list listchars=tab:▸\ ,trail:·,nbsp:·,precedes:←,extends:→
@@ -118,11 +133,15 @@ set incsearch
 set hlsearch
 nnoremap <C-n> :noh<cr>
 
+" case insensitive, unless search pattern includes capital letter
 set ignorecase
 set smartcase
 
+" invert meaning of 'g' flag: search for multiple matches in a line
 set gdefault
 
+" Semicolon means search upward in directory tree to find tags file
+" See `:help file-searching`
 set tags=./tags;
 
 
@@ -134,6 +153,9 @@ set backspace=indent,eol,start
 " Sensible autocomplete
 set wildmenu
 set wildmode=list:longest
+set wildoptions+=tagfile
+" Specific to Nvim? Nvim default:
+"set wildoptions+=pug
 
 " https://stackoverflow.com/a/18730056
 xnoremap <expr> P '"_d"'.v:register.'P'
@@ -143,3 +165,5 @@ xnoremap <expr> P '"_d"'.v:register.'P'
 inoremap jj <Esc>
 
 set timeoutlen=200
+" Key codes should use a shorter timeout
+set ttimeoutlen=50
