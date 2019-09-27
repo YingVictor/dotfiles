@@ -78,6 +78,13 @@ endif
 
 " HIGHLIGHTING
 
+" turn on syntax highlighting
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+colorscheme elflord
+"set t_Co=16
+
 if exists('+colorcolumn')
   " highlight 80th column
   set colorcolumn=80
@@ -90,20 +97,20 @@ endif
 " This is much louder than the use of 'trail' in 'listchars' below.
 "match ErrorMsg '\s\+$'
 
-" turn on syntax highlighting
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
-colorscheme elflord
-"set t_Co=16
-
 " Custom syntax support
-au BufNewFile,BufRead SCons* set filetype=scons
+autocmd BufNewFile,BufRead SCons* set filetype=scons
+
+" Turn on spell checking for some filetypes
+autocmd FileType gitcommit setlocal spell
+autocmd FileType tex,plaintex,context setlocal spell
+autocmd FileType markdown setlocal spell
+autocmd FileType text setlocal spell
 
 " Reduce slowness with long lines
 if &synmaxcol == 3000
   set synmaxcol=500
 endif
+
 
 " DISPLAY & INFORMATION
 
