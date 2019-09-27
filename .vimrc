@@ -13,17 +13,31 @@ set modelines=0
 " Keep undo information in *.un~ files
 set undofile
 
+" Enable undo of deletion actions in insert mode
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
+" Remember more command-line history
+set history=1000
+
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "1000:  will save up to 1000 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
+"  :1000:  command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='10,\"1000,:20,%,n~/.viminfo
+set viminfo=!,'10,\"1000,:1000,%,n~/.viminfo
 
 " If file is changed outside of vim and not changed inside of vim,
 " automatically update vim buffer contents to match new file contents.
+" You can undo with 'u'.
 set autoread
+
+set tabpagemax=50
+
+set sessionoptions-=options
+set viewoptions-=options
+
 
 " TEXT
 set encoding=utf-8
@@ -56,8 +70,10 @@ set softtabstop=2   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 set smarttab
 
-" Including 'j' means automatically remove comment leaders when joining lines
-set formatoptions=tcqj
+" Delete comment leaders when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
 
 
 " HIGHLIGHTING
@@ -71,15 +87,23 @@ else
 endif
 
 " highlight trailing whitespace
-match ErrorMsg '\s\+$'
+" This is much louder than the use of 'trail' in 'listchars' below.
+"match ErrorMsg '\s\+$'
 
 " turn on syntax highlighting
-syntax on
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
 colorscheme elflord
+"set t_Co=16
 
 " Custom syntax support
 au BufNewFile,BufRead SCons* set filetype=scons
 
+" Reduce slowness with long lines
+if &synmaxcol == 3000
+  set synmaxcol=500
+endif
 
 " DISPLAY & INFORMATION
 
@@ -95,9 +119,6 @@ set laststatus=2
 " leave last command visible
 set showcmd
 
-" Keep context lines visible around cursor
-set scrolloff=3
-
 " show line numbers
 set number
 set relativenumber
@@ -109,23 +130,28 @@ set ruler
 set display+=lastline
 " Nvim also has msgsep, included by default
 
+" Keep context lines visible around cursor
+set scrolloff=3
+
 " Smooth sideways scrolling (when nowrap is set)
 set sidescroll=1
+" Keep context columns visible around cursor
+set sidescrolloff=5
 
 " Show potentially unwanted whitespace and line wraps
 set list listchars=tab:▸\ ,trail:·,nbsp:·,precedes:←,extends:→
 
 
-" NAVIGATION
+" MOTION
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" Unbind the arrow keys in insert, normal and visual modes.
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
+" Move in display lines, not physical lines
 nnoremap j gj
 nnoremap k gk
 
@@ -153,12 +179,18 @@ set tags=./tags;
 " make backspace work
 set backspace=indent,eol,start
 
-" Sensible autocomplete
+" Reduce noise from headers in insert-mode autocomplete
+set complete-=i
+
+" Sensible command autocomplete
 set wildmenu
 set wildmode=list:longest
 set wildoptions+=tagfile
 " Specific to Nvim? Nvim default:
 "set wildoptions+=pug
+
+" Increment/decrement decimal numbers with leading zero
+set nrformats-=octal
 
 " https://stackoverflow.com/a/18730056
 xnoremap <expr> P '"_d"'.v:register.'P'
@@ -167,6 +199,10 @@ xnoremap <expr> P '"_d"'.v:register.'P'
 
 inoremap jj <Esc>
 
+" Timeout for above multi-keypress bindings
 set timeoutlen=200
 " Key codes should use a shorter timeout
-set ttimeoutlen=50
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout
+  set ttimeoutlen=50
+endif
