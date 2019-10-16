@@ -52,6 +52,11 @@ if has("autocmd")
     " Use filetype detection and file-based automatic indenting.
     filetype plugin indent on
 
+    " Set some filetypes to get better formatting and syntax highlighting
+    autocmd BufNewFile,BufRead SCons* set filetype=scons
+    " For working with git-revise (https://github.com/mystor/git-revise)
+    autocmd BufRead,BufNewFile COMMIT_EDITMSG set filetype=gitcommit
+
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
@@ -96,9 +101,6 @@ endif
 " highlight trailing whitespace
 " This is much louder than the use of 'trail' in 'listchars' below.
 "match ErrorMsg '\s\+$'
-
-" Custom syntax support
-autocmd BufNewFile,BufRead SCons* set filetype=scons
 
 " Turn on spell checking for some filetypes
 autocmd FileType gitcommit setlocal spell
