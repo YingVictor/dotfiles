@@ -5,6 +5,7 @@
 	default = simple
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [pull]
 	rebase = preserve
 [color "diff-highlight"]
