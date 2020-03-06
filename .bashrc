@@ -232,7 +232,9 @@ else
   echo "export DISPLAY=${DISPLAY}" >| "$TMP_X_SCRIPT"
   if ! cmp -s "$X_SCRIPT" "$TMP_X_SCRIPT"; then
     echo "Saving new ${X_SCRIPT}."
-    mv -f "$X_SCRIPT" "${X_SCRIPT}.bak"
+    if [ -e "$X_SCRIPT" ]; then
+      mv -f "$X_SCRIPT" "${X_SCRIPT}.bak"
+    fi
     mv "$TMP_X_SCRIPT" "$X_SCRIPT"
   else
     echo "${X_SCRIPT} already up to date."
