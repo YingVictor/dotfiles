@@ -20,6 +20,8 @@ alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
+alias cgrep='grep --color=always'
+
 #
 # Some shortcuts for different directory listings
 alias ls='ls -hF --color=tty --show-control-chars'                 # classify files in colour
@@ -38,7 +40,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias dotfiles='git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 # Start tmux with krenew-tmux-wrapper
-alias ktmux='krenew -biLt -- krenew-tmux-wrapper && sleep 0.1 && tmux attach'
+alias ktmux='krenew -biLt -- krenew-tmux-wrapper && sleep 0.1 && tmux -u attach'
 
 # Dirty hacks:
 

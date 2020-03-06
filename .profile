@@ -9,25 +9,23 @@
 umask 022
 
 # Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/.local/bin" ] ; then
+  PATH="${HOME}/.local/bin:${PATH}"
+fi
 if [ -d "${HOME}/.bin" ] ; then
   PATH="${HOME}/.bin:${PATH}"
 fi
+if [ -d "${HOME}/bin" ] ; then
+  PATH="${HOME}/bin:${PATH}"
+fi
 
 # Set MANPATH so it includes users' private man if it exists
-if [ -d "${HOME}/.man" ]; then
-  MANPATH="${HOME}/.man:${MANPATH}"
+if [ -d "${home}/.local/man" ]; then
+  manpath="${home}/.local/man:${manpath}"
 fi
-
-# Set INFOPATH so it includes users' private info if it exists
-if [ -d "${HOME}/.info" ]; then
-  INFOPATH="${HOME}/.info:${INFOPATH}"
+if [ -d "${home}/.man" ]; then
+  manpath="${home}/.man:${manpath}"
 fi
-
-# Set LD_LIBRARY_PATH so it includes users' private lib if it exists
-if [ -d "${HOME}/.lib" ]; then
-  LD_LIBRARY_PATH="${HOME}/.lib:${LD_LIBRARY_PATH}"
-fi
-
 
 if command -v vim >/dev/null 2>&1; then
   export EDITOR="$(command -v vim)"

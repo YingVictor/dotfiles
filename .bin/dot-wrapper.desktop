@@ -1,0 +1,12 @@
+# Run the following command to use this file:
+# xdg-desktop-menu install THIS_FILE
+[Desktop Entry]
+Name=dot-wrapper
+Comment=Run a DOT file through dot and view with xpdf
+Exec=dot-wrapper %f
+Icon=
+Terminal=false
+Type=Application
+Categories=Editor;
+StartupNotify=true
+MimeType=text/vnd.graphviz

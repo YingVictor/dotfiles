@@ -1,0 +1,4 @@
+.vscode/
+
+# Vim undo files
+.*.un~

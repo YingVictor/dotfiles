@@ -2,8 +2,21 @@
 	name = Victor A. Ying
 	email = victory@csail.mit.edu
 [push]
-	default = upstream
+	default = simple
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [pull]
 	rebase = preserve
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red bold
+	newNormal = green
+	newHighlight = green bold
+[diff "pdf"]
+	textconv = pdfinfo
+[alias]
+	showtrackedignored = ls-files -i --exclude-standard
+[status]
+	short = true
+	branch = true

@@ -51,7 +51,7 @@ fi
 set -o notify
 
 # Don't use ^D to exit
-# set -o ignoreeof
+set -o ignoreeof
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
@@ -127,7 +127,7 @@ fi
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 
-# Don't put duplicate lines or lines starting with whitespace in the history.
+# don't put duplicate lines or lines starting with whitespace in the history.
 HISTCONTROL=ignoreboth
 
 # Ignore some controlling instructions
@@ -143,7 +143,7 @@ HISTFILESIZE=20000
 # Whenever displaying the prompt, write the previous line to disk
 PROMPT_COMMAND="history -a"
 
-# Make less more friendly for non-text input files, see lesspipe(1)
+# make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 
@@ -177,19 +177,19 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;36m\] \W \$\[\033[00m\] '
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;36m\]:\W\[\033[00m\]\$ '
     else
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;36m\]\w \$\[\033[00m\] '
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
     fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -229,7 +229,7 @@ if [ $? = 2 ]; then
     # No ssh-agent usable
     # Use existing SSH agent if possible.
     SSH_SCRIPT_DIR="$HOME/.ssh/"
-    SSH_SCRIPT=$SSH_SCRIPT_DIR"env.sh"
+    SSH_SCRIPT="${SSH_SCRIPT_DIR}${HOSTNAME}_env.sh"
     if [ -e $SSH_SCRIPT ]; then
         source $SSH_SCRIPT > /dev/null
     fi
@@ -258,24 +258,25 @@ if [ $? = 2 ]; then
 fi
 
 # Check if we can use X server.
-X_SCRIPT="${HOME}/.x_env.sh"
-xhost >/dev/null 2>&1
+X_SCRIPT="${HOME}/.${HOSTNAME}_x_env.sh"
+xset q >/dev/null 2>&1
 if [ $? != 0 ]; then
   # No X server reachable
-  if [ -e $X_SCRIPT ]; then
-    source $X_SCRIPT
-    # Check if we can use X server.
-    xhost >/dev/null 2>&1
-    if [ $? != 0 ]; then
-      # No X server reachable
-      echo "Deleting defunct ${X_SCRIPT}."
-      rm $X_SCRIPT
-    fi
+  if [ -e "$X_SCRIPT" ]; then
+    source "$X_SCRIPT"
   fi
 else
-  if [ -e $X_SCRIPT ]; then
-    echo "DISPLAY works, but there is an existing ${X_SCRIPT}."
+  # We can reach an X server
+  TMP_X_SCRIPT="/tmp/${USER}_x.sh"
+  echo "export DISPLAY=${DISPLAY}" >| "$TMP_X_SCRIPT"
+  if ! cmp -s "$X_SCRIPT" "$TMP_X_SCRIPT"; then
+    echo "Saving new ${X_SCRIPT}."
+    if [ -e "$X_SCRIPT" ]; then
+      mv -f "$X_SCRIPT" "${X_SCRIPT}.bak"
+    fi
+    mv "$TMP_X_SCRIPT" "$X_SCRIPT"
   else
-    echo "export DISPLAY=${DISPLAY}" > $X_SCRIPT
+    echo "${X_SCRIPT} already up to date."
+    rm -f "$TMP_X_SCRIPT"
   fi
 fi

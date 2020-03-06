@@ -4,6 +4,7 @@ set show-mode-in-prompt on
 set completion-ignore-case on
 set completion-map-case on
 set completion-prefix-display-length 4
+set colored-stats on
 
 $if mode=vi
   set keymap vi-command
