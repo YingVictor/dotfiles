@@ -56,6 +56,8 @@ if has("autocmd")
     autocmd BufNewFile,BufRead SCons* set filetype=scons
     " For working with git-revise (https://github.com/mystor/git-revise)
     autocmd BufRead,BufNewFile COMMIT_EDITMSG set filetype=gitcommit
+    " I don't use Modula-2
+    autocmd BufNewFile,BufRead *.md set filetype=markdown
 
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
