@@ -109,6 +109,7 @@ autocmd FileType gitcommit setlocal spell
 autocmd FileType tex,plaintex,context setlocal spell
 autocmd FileType markdown setlocal spell
 autocmd FileType text setlocal spell
+set spellfile=~/.vim/spell/en.utf-8.add
 
 " Reduce slowness with long lines
 if &synmaxcol == 3000
