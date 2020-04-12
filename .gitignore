@@ -35,6 +35,7 @@
 /.ICEauthority
 /.java/
 /.kde/
+/.lesshsQ
 /.lesshst
 /.local/
 /.macromedia/
@@ -44,6 +45,7 @@
 /.oracle_jre_usage/
 /.pip/
 /.pki/nssdb/
+/.puppet/
 /.pyenv/
 /.pylint.d/
 /.python_history
