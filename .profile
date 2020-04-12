@@ -35,7 +35,7 @@ fi
 
 
 # Make sort, grep, etc. behave as expected.
-export LC_ALL=C
+#export LC_ALL=C
 
 
 # colored GCC warnings and errors
