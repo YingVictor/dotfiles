@@ -63,8 +63,11 @@ if has("autocmd")
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
     " clang-format
-    autocmd FileType c,cpp map <C-I> :pyf ~/.vim/clang-format.py<CR>
-    "autocmd FileType c,cpp imap <C-I> <ESC>:pyf ~/.vim/clang-format.py<CR>i
+    if has('python')
+        autocmd FileType c,cpp map <C-I> :pyf ~/.vim/clang-format.py<CR>
+    elseif has('python3')
+        autocmd FileType c,cpp map <C-I> :py3f ~/.vim/clang-format.py<CR>
+    endif
 
     " https://stackoverflow.com/q/28078407
     autocmd Filetype c,cpp set comments^=:///
