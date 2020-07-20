@@ -31,7 +31,7 @@ if [ $? != 0 ]; then
     BACKUP_DIR=$HOME/.backup
     mkdir -p $BACKUP_DIR && \
         $DOTFILES checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-        xargs -I{} bash -c "mvp {} $BACKUP_DIR/{}"
+        xargs -I{} bash -c "mvp $HOME/{} $BACKUP_DIR/{}"
     set -e
     $DOTFILES checkout -q
     shopt -s dotglob
