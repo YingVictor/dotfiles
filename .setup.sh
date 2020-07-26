@@ -1,4 +1,56 @@
 #! /usr/bin/env bash
+shopt -s extglob
+
+# mkdir ~/.ssh
+# chmod 700 ~/.ssh
+#
+# ssh-keygen -t rsa -b 4096
+#
+# wget https://raw.githubusercontent.com/VictorYing/dotfiles/master/.setup.sh
+# chmod +x .setup.sh
+# ./.setup.sh
+
+ssh-add -l >/dev/null 2>&1
+if [ $? = 2 ]; then
+    # No ssh-agent usable
+    # Use existing SSH agent if possible.
+    SSH_SCRIPT_DIR="$HOME/.ssh/"
+    SSH_SCRIPT="${SSH_SCRIPT_DIR}${HOSTNAME}_env.sh"
+    if [ -e $SSH_SCRIPT ]; then
+        source $SSH_SCRIPT > /dev/null
+    fi
+    # Check if we can use SSH agent.
+    ssh-add -l >/dev/null 2>&1
+    if [ $? = 2 ]; then
+        # No ssh-agent usable
+        echo "Starting new SSH agent"
+
+        # Kill existing ssh-agents
+        pkill -u $USER -f ssh-agent
+
+        # Start new SSH agent and record the information to use it in a file
+        mkdir -p $SSH_SCRIPT_DIR
+        # >| allows output redirection to over-write files if no clobber is set
+        ssh-agent -s >| $SSH_SCRIPT
+        source $SSH_SCRIPT > /dev/null
+
+        # Add SSH keys
+        if [ -d ~/.ssh/keys ]; then
+            chmod 600 ~/.ssh/keys/id!(*.pub) 2> /dev/null
+            ssh-add ~/.ssh/keys/id!(*.pub) 2> /dev/null
+        elif [ -d ~/.ssh/private ]; then
+            chmod 600 ~/.ssh/private/id!(*.pub) 2> /dev/null
+            ssh-add ~/.ssh/private/id!(*.pub) 2> /dev/null
+        else
+            chmod 600 ~/.ssh/id!(*.pub) 2> /dev/null
+            ssh-add ~/.ssh/id!(*.pub) 2> /dev/null
+        fi
+    fi
+fi
+ssh-add -l
+if [ $? = 1 ]; then
+  exit 1
+fi
 
 set -e
 
