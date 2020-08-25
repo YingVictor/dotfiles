@@ -33,3 +33,7 @@ destructors
 subsumption
 parallelizable
 tripcount
+misspeculation
+variadic
+LLVM
+SCC
