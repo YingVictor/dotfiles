@@ -158,7 +158,7 @@ if [[ -f "${git_prompt_sh}" ]]; then
 
     GIT_PS1_SHOWDIRTYSTATE="true"  # This is slow for large repos: git config --local bash.showDirtyState false
     GIT_PS1_SHOWSTASHSTATE="true"
-    #GIT_PS1_SHOWUNTRACKEDFILES="true"  # This is very slow
+    GIT_PS1_SHOWUNTRACKEDFILES="true"  # This is slow for large repos: git config --local bash.showUntrackedFiles false
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_DESCRIBE_STYLE="branch"
     GIT_PS1_SHOWCOLORHINTS="true"
