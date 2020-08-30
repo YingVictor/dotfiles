@@ -98,4 +98,6 @@ fi
 
 unset mvp
 
+$DOTFILES submodule update --init --recursive
+
 echo "Checked out dotfiles."

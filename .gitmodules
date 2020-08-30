@@ -1,0 +1,6 @@
+[submodule ".thirdparty/diff-so-fancy"]
+	path = .thirdparty/diff-so-fancy
+	url = git@github.com:so-fancy/diff-so-fancy.git
+[submodule ".thirdparty/scons.vim"]
+	path = .thirdparty/scons.vim
+	url = git@github.com:vim-scripts/scons.vim.git
