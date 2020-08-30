@@ -150,7 +150,7 @@ unset color_prompt force_color_prompt
 # Debian/Ubuntu packages for git install a copy of
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
-if [[ -e "${git_prompt_sh}" ]]; then
+if [[ -f "${git_prompt_sh}" ]]; then
     source "${git_prompt_sh}"  # This defines the __git_ps1 bash function
     # See substring replacement in the Bash Advanced Scripting Guide
     # https://tldp.org/LDP/abs/html/string-manipulation.html
@@ -208,7 +208,7 @@ if [ $? = 2 ]; then
     # Use existing SSH agent if possible.
     SSH_SCRIPT_DIR="$HOME/.ssh/"
     SSH_SCRIPT="${SSH_SCRIPT_DIR}${HOSTNAME}_env.sh"
-    if [ -e $SSH_SCRIPT ]; then
+    if [ -f $SSH_SCRIPT ]; then
         source $SSH_SCRIPT > /dev/null
     fi
     # Check if we can use SSH agent.
@@ -240,7 +240,7 @@ X_SCRIPT="${HOME}/.${HOSTNAME}_x_env.sh"
 xset q >/dev/null 2>&1
 if [ $? != 0 ]; then
   # No X server reachable
-  if [ -e "$X_SCRIPT" ]; then
+  if [ -f "$X_SCRIPT" ]; then
     source "$X_SCRIPT"
   fi
 else
@@ -249,7 +249,7 @@ else
   echo "export DISPLAY=${DISPLAY}" >| "$TMP_X_SCRIPT"
   if ! cmp -s "$X_SCRIPT" "$TMP_X_SCRIPT"; then
     echo "Saving new ${X_SCRIPT}."
-    if [ -e "$X_SCRIPT" ]; then
+    if [ -f "$X_SCRIPT" ]; then
       mv -f "$X_SCRIPT" "${X_SCRIPT}.bak"
     fi
     mv "$TMP_X_SCRIPT" "$X_SCRIPT"
