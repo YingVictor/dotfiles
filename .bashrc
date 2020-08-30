@@ -147,6 +147,23 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# Debian/Ubuntu packages for git install a copy of
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
+if [[ -e "${git_prompt_sh}" ]]; then
+    source "${git_prompt_sh}"  # This defines the __git_ps1 bash function
+    # See substring replacement in the Bash Advanced Scripting Guide
+    # https://tldp.org/LDP/abs/html/string-manipulation.html
+    PS1="${PS1/%'\$ '/'$(__git_ps1 " (%s)")\$ '}"
+
+    GIT_PS1_SHOWDIRTYSTATE="true"  # This is slow for large repos: git config --local bash.showDirtyState false
+    GIT_PS1_SHOWSTASHSTATE="true"
+    #GIT_PS1_SHOWUNTRACKEDFILES="true"  # This is very slow
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_DESCRIBE_STYLE="branch"
+    GIT_PS1_SHOWCOLORHINTS="true"
+fi
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
