@@ -4,3 +4,6 @@
 [submodule ".thirdparty/scons.vim"]
 	path = .thirdparty/scons.vim
 	url = git@github.com:vim-scripts/scons.vim.git
+[submodule ".thirdparty/tmux-cssh"]
+	path = .thirdparty/tmux-cssh
+	url = git@github.com:peikk0/tmux-cssh.git
