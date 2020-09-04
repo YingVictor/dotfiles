@@ -7,3 +7,6 @@
 [submodule ".thirdparty/tmux-cssh"]
 	path = .thirdparty/tmux-cssh
 	url = git@github.com:peikk0/tmux-cssh.git
+[submodule ".thirdparty/FlameGraph"]
+	path = .thirdparty/FlameGraph
+	url = git@github.com:brendangregg/FlameGraph.git
