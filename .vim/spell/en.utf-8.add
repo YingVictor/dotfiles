@@ -37,3 +37,6 @@ misspeculation
 variadic
 LLVM
 SCC
+Dennard
+multicores
+microarchitectural
