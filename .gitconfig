@@ -3,14 +3,18 @@
 	email = victory@csail.mit.edu
 [push]
 	default = simple
+[pull]
+	rebase = merges
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
-[pull]
-	rebase = merges
+[diff]
+	wsErrorHighlight = all
+	colorMoved = true
+	colorMovedWS = allow-indentation-change
 [color "diff-highlight"]
 	oldNormal = red
 	oldHighlight = red bold
