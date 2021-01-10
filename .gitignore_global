@@ -4,3 +4,9 @@ tags
 
 # Vim undo files
 .*.un~
+
+# Vim swap files
+.*.swp
+
+# NFS open-but-deleted files
+.nfs*
