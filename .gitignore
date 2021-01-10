@@ -33,6 +33,8 @@
 /.gnome/
 /.gnupg/
 /.ICEauthority
+/.ipython/
+/.ivy2/
 /.java/
 /.kde/
 /.lesshsQ
@@ -69,6 +71,8 @@
 /.vscode-server/
 /.wget-hsts
 /.Xauthority
+/.XIC.lock
+/.Xilinx/
 /.xinputrc
 /.xorgxrdp.*.log
 /.xorgxrdp.*.log.old
