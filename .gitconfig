@@ -7,6 +7,8 @@
 	rebase = merges
 [init]
 	defaultBranch = main
+[help]
+	autocorrect = 20
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
