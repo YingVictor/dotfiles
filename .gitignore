@@ -20,6 +20,7 @@
 /.aspell.en.*
 /.bash_history
 /.cache/
+/.cargo/
 /.cinnamon/
 /.cmake/
 /.config/
@@ -51,6 +52,7 @@
 /.pyenv/
 /.pylint.d/
 /.python_history
+/.rustup/
 /.slocdata/
 /.smartgit/
 /.snapshot*
