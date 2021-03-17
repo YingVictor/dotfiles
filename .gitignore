@@ -46,6 +46,7 @@
 /.mozilla/
 /.opam/
 /.oracle_jre_usage/
+/.parallel/tmp/
 /.pip/
 /.pki/nssdb/
 /.puppet/
